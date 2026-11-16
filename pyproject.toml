@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wec"
+version = "1.0.0"
+description = "Wave-farm power prediction from buoy layouts: gradient boosting vs MLP vs set transformer"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = ["numpy>=1.26", "pandas>=2.2", "scikit-learn>=1.5", "torch>=2.3"]
+
+[project.optional-dependencies]
+track = ["mlflow>=3.0"]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+ignore = ["S101"]

@@ -1,0 +1,302 @@
+{
+  "cleaning": {
+    "Adelaide": {
+      "rows_in": 71999,
+      "exact_duplicates": 0,
+      "inconsistent_totals": 7,
+      "rows_out": 71992
+    },
+    "Perth": {
+      "rows_in": 72000,
+      "exact_duplicates": 242,
+      "inconsistent_totals": 0,
+      "rows_out": 71758
+    },
+    "Sydney": {
+      "rows_in": 72000,
+      "exact_duplicates": 27174,
+      "inconsistent_totals": 7,
+      "rows_out": 44819
+    },
+    "Tasmania": {
+      "rows_in": 72000,
+      "exact_duplicates": 0,
+      "inconsistent_totals": 11,
+      "rows_out": 71989
+    }
+  },
+  "results": [
+    {
+      "site": "Adelaide",
+      "model": "mean_baseline",
+      "split": "random",
+      "train_rows": 61194,
+      "test_rows": 10798,
+      "fit_seconds": 0.1,
+      "r2": -8.19270897789437e-08,
+      "rmse_kw": 56.324970236767,
+      "mape_pct": 3.2081178800585546
+    },
+    {
+      "site": "Adelaide",
+      "model": "ridge_coords",
+      "split": "random",
+      "train_rows": 61194,
+      "test_rows": 10798,
+      "fit_seconds": 0.2,
+      "r2": 0.811296541876785,
+      "rmse_kw": 24.467572429975547,
+      "mape_pct": 1.3881420814223626
+    },
+    {
+      "site": "Adelaide",
+      "model": "hgb_coords",
+      "split": "random",
+      "train_rows": 61194,
+      "test_rows": 10798,
+      "fit_seconds": 13.8,
+      "r2": 0.9466380346693561,
+      "rmse_kw": 13.011185279964062,
+      "mape_pct": 0.7022507488870856
+    },
+    {
+      "site": "Adelaide",
+      "model": "hgb_interactions",
+      "split": "random",
+      "train_rows": 61194,
+      "test_rows": 10798,
+      "fit_seconds": 22.3,
+      "r2": 0.8250282065235209,
+      "rmse_kw": 23.560525607309067,
+      "mape_pct": 1.2094507607508238
+    },
+    {
+      "site": "Adelaide",
+      "model": "mlp",
+      "split": "random",
+      "train_rows": 61194,
+      "test_rows": 10798,
+      "fit_seconds": 1496.1,
+      "r2": 0.9271842365471912,
+      "rmse_kw": 15.198952466476074,
+      "mape_pct": 0.8436025182332255,
+      "epochs_run": 40
+    },
+    {
+      "site": "Adelaide",
+      "model": "set_transformer",
+      "split": "random",
+      "train_rows": 61194,
+      "test_rows": 10798,
+      "fit_seconds": 655.9,
+      "r2": 0.883005447267519,
+      "rmse_kw": 19.265654776495868,
+      "mape_pct": 1.112111969727169,
+      "epochs_run": 19
+    },
+    {
+      "site": "Perth",
+      "model": "mean_baseline",
+      "split": "random",
+      "train_rows": 60995,
+      "test_rows": 10763,
+      "fit_seconds": 0.1,
+      "r2": -4.901726366335346e-05,
+      "rmse_kw": 52.062422364785505,
+      "mape_pct": 2.9731467376540066
+    },
+    {
+      "site": "Perth",
+      "model": "ridge_coords",
+      "split": "random",
+      "train_rows": 60995,
+      "test_rows": 10763,
+      "fit_seconds": 0.2,
+      "r2": 0.7939107007569145,
+      "rmse_kw": 23.634229514659868,
+      "mape_pct": 1.3439052118098544
+    },
+    {
+      "site": "Perth",
+      "model": "hgb_coords",
+      "split": "random",
+      "train_rows": 60995,
+      "test_rows": 10763,
+      "fit_seconds": 13.3,
+      "r2": 0.934872709903753,
+      "rmse_kw": 13.286030079651377,
+      "mape_pct": 0.7337898084151808
+    },
+    {
+      "site": "Perth",
+      "model": "hgb_interactions",
+      "split": "random",
+      "train_rows": 60995,
+      "test_rows": 10763,
+      "fit_seconds": 48.6,
+      "r2": 0.7972970213340753,
+      "rmse_kw": 23.439254400722742,
+      "mape_pct": 1.2267697992826236
+    },
+    {
+      "site": "Perth",
+      "model": "mlp",
+      "split": "random",
+      "train_rows": 60995,
+      "test_rows": 10763,
+      "fit_seconds": 101.1,
+      "r2": 0.9132803104518057,
+      "rmse_kw": 15.331074167857462,
+      "mape_pct": 0.8570163706544938,
+      "epochs_run": 40
+    },
+    {
+      "site": "Perth",
+      "model": "set_transformer",
+      "split": "random",
+      "train_rows": 60995,
+      "test_rows": 10763,
+      "fit_seconds": 873.5,
+      "r2": 0.9915334295113392,
+      "rmse_kw": 4.790352713286583,
+      "mape_pct": 0.27287308653484293,
+      "epochs_run": 40
+    },
+    {
+      "site": "Sydney",
+      "model": "mean_baseline",
+      "split": "random",
+      "train_rows": 38097,
+      "test_rows": 6722,
+      "fit_seconds": 0.1,
+      "r2": -6.158240226716849e-05,
+      "rmse_kw": 24.261573029620067,
+      "mape_pct": 1.3289289051309083
+    },
+    {
+      "site": "Sydney",
+      "model": "ridge_coords",
+      "split": "random",
+      "train_rows": 38097,
+      "test_rows": 6722,
+      "fit_seconds": 0.1,
+      "r2": 0.6143094483528264,
+      "rmse_kw": 15.06694085387987,
+      "mape_pct": 0.7849077532804538
+    },
+    {
+      "site": "Sydney",
+      "model": "hgb_coords",
+      "split": "random",
+      "train_rows": 38097,
+      "test_rows": 6722,
+      "fit_seconds": 9.8,
+      "r2": 0.9064529415762714,
+      "rmse_kw": 7.420286114177935,
+      "mape_pct": 0.36335303146704806
+    },
+    {
+      "site": "Sydney",
+      "model": "hgb_interactions",
+      "split": "random",
+      "train_rows": 38097,
+      "test_rows": 6722,
+      "fit_seconds": 36.2,
+      "r2": 0.9714729816251356,
+      "rmse_kw": 4.097639752414321,
+      "mape_pct": 0.2092027506017728
+    },
+    {
+      "site": "Sydney",
+      "model": "mlp",
+      "split": "random",
+      "train_rows": 38097,
+      "test_rows": 6722,
+      "fit_seconds": 57.9,
+      "r2": 0.8639269572811161,
+      "rmse_kw": 8.949352849198025,
+      "mape_pct": 0.4515597823093364,
+      "epochs_run": 40
+    },
+    {
+      "site": "Sydney",
+      "model": "set_transformer",
+      "split": "random",
+      "train_rows": 38097,
+      "test_rows": 6722,
+      "fit_seconds": 566.3,
+      "r2": 0.9839685105202087,
+      "rmse_kw": 3.0717970615722896,
+      "mape_pct": 0.16318410381881168,
+      "epochs_run": 40
+    },
+    {
+      "site": "Tasmania",
+      "model": "mean_baseline",
+      "split": "random",
+      "train_rows": 61191,
+      "test_rows": 10798,
+      "fit_seconds": 0.1,
+      "r2": -2.889826072061119e-05,
+      "rmse_kw": 111.61328839315333,
+      "mape_pct": 2.332472779686814
+    },
+    {
+      "site": "Tasmania",
+      "model": "ridge_coords",
+      "split": "random",
+      "train_rows": 61191,
+      "test_rows": 10798,
+      "fit_seconds": 0.1,
+      "r2": 0.7188742807897428,
+      "rmse_kw": 59.17795024150465,
+      "mape_pct": 1.2057759399525034
+    },
+    {
+      "site": "Tasmania",
+      "model": "hgb_coords",
+      "split": "random",
+      "train_rows": 61191,
+      "test_rows": 10798,
+      "fit_seconds": 11.9,
+      "r2": 0.9133977707422468,
+      "rmse_kw": 32.84537043938378,
+      "mape_pct": 0.6777070762346544
+    },
+    {
+      "site": "Tasmania",
+      "model": "hgb_interactions",
+      "split": "random",
+      "train_rows": 61191,
+      "test_rows": 10798,
+      "fit_seconds": 35.3,
+      "r2": 0.7817289682016065,
+      "rmse_kw": 52.144400562711766,
+      "mape_pct": 1.0364161286846696
+    },
+    {
+      "site": "Tasmania",
+      "model": "mlp",
+      "split": "random",
+      "train_rows": 61191,
+      "test_rows": 10798,
+      "fit_seconds": 90.3,
+      "r2": 0.891309882166318,
+      "rmse_kw": 36.79634298832987,
+      "mape_pct": 0.7643636490730723,
+      "epochs_run": 40
+    },
+    {
+      "site": "Tasmania",
+      "model": "set_transformer",
+      "split": "random",
+      "train_rows": 61191,
+      "test_rows": 10798,
+      "fit_seconds": 375.0,
+      "r2": 0.8416882092530662,
+      "rmse_kw": 44.40851586924468,
+      "mape_pct": 0.9171139196932745,
+      "epochs_run": 18
+    }
+  ]
+}

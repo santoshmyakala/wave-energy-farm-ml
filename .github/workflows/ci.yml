@@ -1,0 +1,31 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install (CPU-only PyTorch)
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -e ".[dev]"
+      - run: ruff check src tests
+      - run: pytest -q
+      - name: Benchmark smoke run on the committed sample
+        run: python -m wec.benchmark --data-dir data/sample --epochs 2 --no-mlflow --out smoke
+      - uses: actions/upload-artifact@v4
+        with:
+          name: smoke-results
+          path: smoke/
