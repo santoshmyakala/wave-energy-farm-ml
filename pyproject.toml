@@ -11,7 +11,7 @@ license = { text = "MIT" }
 dependencies = ["numpy>=1.26", "pandas>=2.2", "scikit-learn>=1.5", "torch>=2.3"]
 
 [project.optional-dependencies]
-track = ["mlflow>=3.0"]
+track = ["mlflow>=3.18.0"]
 dev = ["pytest>=8", "ruff>=0.6"]
 
 [tool.setuptools.packages.find]
