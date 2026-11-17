@@ -1,0 +1,57 @@
+- out: pipeline
+  title: Wave-energy farm — experiment pipeline
+  subtitle: Leakage-safe cleaning and splits → three representations → classical ML vs deep learning → scored on untouched test rows
+  grid: {dx: 215, dy: 150}
+  groups:
+    - {id: prep, label: Data hygiene, icon: shield, color: green, box: [0, 0.5, 2, 0.5]}
+    - {id: models, label: Models, icon: model, color: purple, box: [3, 2, 3, 3]}
+  nodes:
+    - {id: raw, label: Raw CSVs, sub: 4 UCI farm sites, icon: data, at: [0, 0.5], color: blue}
+    - {id: clean, label: clean(), sub: drop duplicates · bad totals, icon: python, at: [1, 0.5], color: green, badge: "27k dupes"}
+    - {id: split, label: split, sub: train / val / test, icon: pipeline, at: [2, 0.5], color: green}
+    - {id: random, label: Random split, sub: 70 / 15 / 15, icon: data, at: [3, 0], color: blue}
+    - {id: blocked, label: Blocked split, sub: last 15% of file = test, icon: lock, at: [3, 1], color: blue}
+    - {id: feats, label: Representations, sub: canonical · interactions · raw set, icon: gear, at: [4, 0.5], color: orange}
+    - {id: ml, label: scikit-learn, sub: Ridge · HistGB, icon: scikitlearn, at: [3, 2], color: purple}
+    - {id: dl, label: PyTorch, sub: MLP · set transformer, icon: pytorch, at: [3, 3], color: purple}
+    - {id: eval, label: Evaluate, sub: R² · RMSE · MAPE on test, icon: chart, at: [2, 2.5], color: teal, pulse: true}
+    - {id: out, label: Reports + runs, sub: reports/*.md · MLflow, icon: [doc, mlflow], at: [1, 2.5], color: teal}
+  edges:
+    - {from: raw, to: clean, kind: data, packet: db}
+    - {from: clean, to: split, kind: data, packet: db}
+    - {from: split, to: random, kind: data}
+    - {from: split, to: blocked, kind: data}
+    - {from: random, to: feats, kind: data}
+    - {from: blocked, to: feats, kind: data}
+    - {from: feats, to: ml, kind: data, route: vh}
+    - {from: feats, to: dl, kind: data, route: vh}
+    - {from: ml, to: eval, kind: data}
+    - {from: dl, to: eval, kind: data}
+    - {from: eval, to: out, kind: metrics, packet: doc}
+
+- out: set-transformer
+  title: Set transformer for a 16-buoy farm
+  subtitle: No positional encoding → permutation-equivariant; geometry enters through a learned pairwise attention bias
+  grid: {dx: 215, dy: 150}
+  groups:
+    - {id: net, label: PyTorch model, icon: pytorch, color: orange, box: [1, 0, 4, 2]}
+  nodes:
+    - {id: xy, label: "16 × (x, y)", sub: buoy positions, icon: region, at: [0, 0.5], color: blue}
+    - {id: emb, label: Linear embedding, sub: per buoy, icon: model, at: [1, 0], color: purple}
+    - {id: rel, label: Pairwise geometry, sub: dx · dy · distance, icon: cluster, at: [1, 1], color: purple}
+    - {id: bias, label: Attention bias, sub: MLP → per head, icon: gear, at: [2, 1], color: purple}
+    - {id: att, label: Self-attention ×3, sub: no positional encoding, icon: eye, at: [3, 0.5], color: orange, stack: true, pulse: true}
+    - {id: head, label: Per-buoy head, sub: shared weights, icon: model, at: [4, 0.5], color: purple}
+    - {id: buoys, label: 16 buoy powers, sub: one per buoy, icon: chart, at: [4, 2], color: teal}
+    - {id: sum, label: "Σ", sub: sum over buoys, icon: function, at: [3, 2], color: teal}
+    - {id: total, label: Farm power, sub: total output, icon: cache, at: [2, 2], color: green}
+  edges:
+    - {from: xy, to: emb, kind: data}
+    - {from: xy, to: rel, kind: data}
+    - {from: rel, to: bias, kind: data}
+    - {from: emb, to: att, kind: data}
+    - {from: bias, to: att, kind: control}
+    - {from: att, to: head, kind: data}
+    - {from: head, to: buoys, kind: data}
+    - {from: buoys, to: sum, kind: data}
+    - {from: sum, to: total, kind: data}

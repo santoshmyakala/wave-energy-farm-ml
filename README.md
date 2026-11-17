@@ -55,29 +55,19 @@ The strongly negative mean-baseline R² confirms the held-out tail of each file 
 
 ## Method
 
-```mermaid
-flowchart LR
-  raw[(4 site CSVs<br/>72k rows each)] --> clean["clean()<br/>drop exact duplicates<br/>drop inconsistent totals"]
-  clean --> split{split}
-  split -->|random| r[70 / 15 / 15]
-  split -->|blocked| b[file order:<br/>last 15% = test]
-  r & b --> feats["Representations<br/>canonical coords · interaction features · raw set"]
-  feats --> ml["scikit-learn<br/>Ridge · HistGB"]
-  feats --> dl["PyTorch<br/>MLP · set transformer<br/>AdamW · OneCycle · early stopping on val"]
-  ml & dl --> eval["R² · RMSE · MAPE<br/>on untouched test rows"]
-  eval --> out[(reports/*.md, *.json<br/>MLflow runs)]
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/pipeline-dark.svg">
+  <img alt="Experiment pipeline: raw CSVs from four sites are cleaned (duplicates and inconsistent totals removed) and split randomly or by file order; three representations feed scikit-learn (Ridge, HistGB) and PyTorch (MLP, set transformer) models, evaluated on untouched test rows and logged to reports and MLflow." src="docs/diagrams/pipeline-light.svg" width="100%">
+</picture>
+
+<sub>Animated diagram generated from <a href="docs/diagrams">docs/diagrams/*.yaml</a> with <a href="https://github.com/santoshmyakala/santoshmyakala/tree/main/tools/archdiagram">archdiagram</a>.</sub>
 
 ### The set transformer
 
-```mermaid
-flowchart LR
-  xy["16 × (x, y)"] --> emb[Linear embedding]
-  xy --> rel["pairwise dx, dy, distance"] --> bias[MLP → per-head<br/>attention bias]
-  emb --> att["3 × self-attention blocks<br/>(no positional encoding → permutation-equivariant)"]
-  bias --> att
-  att --> head[per-buoy head] --> pb["16 buoy powers"] --> sum((Σ)) --> total[farm power]
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/set-transformer-dark.svg">
+  <img alt="Set transformer: 16 buoy (x, y) positions are embedded per buoy; pairwise dx, dy and distance feed an MLP that produces a per-head attention bias; three self-attention blocks without positional encoding feed a shared per-buoy head; the 16 buoy powers are summed into farm power." src="docs/diagrams/set-transformer-light.svg" width="100%">
+</picture>
 
 - **Permutation-equivariant by construction.** Renumbering the buoys permutes the per-buoy outputs and leaves the total unchanged. This is asserted in `tests/test_features_models.py`.
 - **Relative-position bias.** Interaction between two buoys depends on their offset, so attention logits get a learned function of (dx, dy, distance).
