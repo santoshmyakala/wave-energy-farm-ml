@@ -60,8 +60,6 @@ The strongly negative mean-baseline R² confirms the held-out tail of each file 
   <img alt="Experiment pipeline: raw CSVs from four sites are cleaned (duplicates and inconsistent totals removed) and split randomly or by file order; three representations feed scikit-learn (Ridge, HistGB) and PyTorch (MLP, set transformer) models, evaluated on untouched test rows and logged to reports and MLflow." src="docs/diagrams/pipeline-light.svg" width="100%">
 </picture>
 
-<sub>Animated diagram generated from <a href="docs/diagrams">docs/diagrams/*.yaml</a> with <a href="https://github.com/santoshmyakala/santoshmyakala/tree/main/tools/archdiagram">archdiagram</a>.</sub>
-
 ### The set transformer
 
 <picture>
